@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import LeftMenu from './LeftMenu';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,22 +19,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default () => {
   const classes = useStyles();
+
+  const [state, setState] = React.useState({
+    isLeftMenuOpen: false
+  });
+
+  const closeMenuHandler = () => {
+    setState({ isLeftMenuOpen: false });
+  };
+
+  const openMenuHandler = () => {
+    setState({ isLeftMenuOpen: true });
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="Menu">
+          <IconButton edge='start' color='inherit' aria-label='Menu' onClick={openMenuHandler}>
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6">
+          <Typography className={classes.title} variant='h6'>
             Home
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color='inherit'>Login</Button>
         </Toolbar>
+
+        <LeftMenu isOpen={state.isLeftMenuOpen} closeMenuHandler={closeMenuHandler}/>
       </AppBar>
     </div>
   );
-}
+};

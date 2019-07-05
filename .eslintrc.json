@@ -193,11 +193,15 @@
           }
       ],
       "quotes": [
-          2,
+          "error",
           "single",
           {
               "allowTemplateLiterals": true
           }
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-single"
       ],
       "semi": [
           2,
